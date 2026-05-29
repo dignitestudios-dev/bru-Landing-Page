@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css?family=Pacifico:400|Poppins:500,400,700");
+
+@font-face {
+    font-family: "Clash Display-Regular";
+    src: local("Clash Display-Regular");
+}
+
+@font-face {
+    font-family: "Clash Display-Semibold";
+    src: local("Clash Display-Semibold");
+}
+
+@font-face {
+    font-family: "Clash Display-Bold";
+    src: local("Clash Display-Bold");
+}
+
+@font-face {
+    font-family: "Clash Display-Medium";
+    src: local("Clash Display-Medium");
+}
+
+@font-face {
+    font-family: "Satoshi-Bold";
+    src: local("Satoshi-Bold");
+}
+
+@font-face {
+    font-family: "SF Pro Text-Semibold";
+    src: local("SF Pro Text-Semibold");
+}
+
+@font-face {
+    font-family: "Satoshi-Medium";
+    src: local("Satoshi-Medium");
+}
