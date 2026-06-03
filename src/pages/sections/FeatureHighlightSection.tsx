@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export const FeatureHighlightSection = (): JSX.Element => {
   const cardClass =
     "relative rounded-3xl overflow-hidden " +
@@ -87,7 +89,13 @@ export const FeatureHighlightSection = (): JSX.Element => {
           {/* ──────────────────────────────────────────────
               CARD 1: Open Bru & see people around you
           ────────────────────────────────────────────── */}
-          <div className={`${cardClass} h-[280px] sm:h-[360px] lg:h-[420px]`}>
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+            className={`${cardClass} h-[280px] sm:h-[360px] lg:h-[420px]`}
+          >
             <div className={topGlow} />
 
             {/* title */}
@@ -106,67 +114,89 @@ export const FeatureHighlightSection = (): JSX.Element => {
             />
 
             {/* phone */}
-            <div className="absolute right-0 bottom-0 w-[36%] max-w-[230px] h-[72%]">
-              <img
-                className="absolute left-[4%] bottom-0 w-[89%]"
-                alt="Yapai dark"
-                src="/figmaAssets/yapai-dark-1.png"
-              />
+            <motion.div 
+              initial={{ opacity: 0, y: 120, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 1.0, delay: 0.3, ease: "easeOut" }}
+              className="absolute right-5 bottom-0 w-[100%] max-w-[230px] h-[72%]">             
               <img
                 className="absolute top-0 left-0 w-full h-full object-contain object-bottom"
                 alt="Phone"
-                src="/figmaAssets/phone-035--converted-aaaa-01-1.png"
+                src="/figmaAssets/how-it-work.png"
               />
-            </div>
+            </motion.div>
 
-            {/* user pills */}
-            <div className="absolute top-[36%] left-[5%] w-[58%] h-[56%]">
-              {/* pill: Zion Lark */}
-              <div className="absolute top-0 left-[3%]">
-                <div className={pillClass}>
-                  <img className={avatarClass} alt="Ellipse" src="/figmaAssets/ellipse-9339-3.svg" />
-                  <div className="inline-flex flex-col items-start justify-center">
-                    <div className={pillName}>Zion Lark</div>
-                    <div className="inline-flex items-center gap-[3.54px]">
-                      <div className="w-[5px] h-[5px] bg-[#ff8331] rounded-full flex-shrink-0" />
-                      <div className={pillDist}>55m Away</div>
+            {/* user pills - orbital animation around center pin */}
+            <div className="absolute top-[60%] left-[32.5%] w-0 h-0 z-20 pointer-events-none">
+              
+              {/* pill: Zion Lark (Starts Top-Left ~225deg) */}
+              <div className="animate-orbit" style={{ "--orbit-radius": "min(22vw, 120px)", "--orbit-duration": "40s", "--orbit-delay": "-25s", "--static-angle": "225deg" } as React.CSSProperties}>
+                <div className="animate-float-wrapper pointer-events-auto" style={{ "--float-delay": "0s" } as React.CSSProperties}>
+                  <div className="-translate-x-1/2 -translate-y-1/2 w-max">
+                    <div className={pillClass}>
+                      <img className={avatarClass} alt="Ellipse" src="/figmaAssets/ellipse-9339-3.svg" />
+                      <div className="inline-flex flex-col items-start justify-center">
+                        <div className={pillName}>Zion Lark</div>
+                        <div className="inline-flex items-center gap-[3.54px]">
+                          <div className="w-[5px] h-[5px] bg-[#ff8331] rounded-full flex-shrink-0" />
+                          <div className={pillDist}>55m Away</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              {/* pill: Remi */}
-              <div className="absolute bottom-0 left-0">
-                <div className={pillClass}>
-                  <img className={avatarClass} alt="Ellipse" src="/figmaAssets/ellipse-9339-1.svg" />
-                  <div className="inline-flex flex-col items-start justify-center">
-                    <div className={pillName}>Remi</div>
-                    <div className="inline-flex items-center gap-[3.54px]">
-                      <div className="w-[5px] h-[5px] bg-[#ff8331] rounded-full flex-shrink-0" />
-                      <div className={pillDist}>55m Away</div>
+
+              {/* pill: Remi (Starts Bottom-Left ~135deg) */}
+              <div className="animate-orbit" style={{ "--orbit-radius": "min(20vw, 120px)", "--orbit-duration": "40s", "--orbit-delay": "-15s", "--static-angle": "135deg" } as React.CSSProperties}>
+                <div className="animate-float-wrapper pointer-events-auto" style={{ "--float-delay": "-2s" } as React.CSSProperties}>
+                  <div className="-translate-x-1/2 -translate-y-1/2 w-max">
+                    <div className={pillClass}>
+                      <img className={avatarClass} alt="Ellipse" src="/figmaAssets/ellipse-9339-1.svg" />
+                      <div className="inline-flex flex-col items-start justify-center">
+                        <div className={pillName}>Remi</div>
+                        <div className="inline-flex items-center gap-[3.54px]">
+                          <div className="w-[5px] h-[5px] bg-[#ff8331] rounded-full flex-shrink-0" />
+                          <div className={pillDist}>55m Away</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              {/* pill: Larkin */}
-              <div className="absolute top-[40%] right-0">
-                <div className={pillClass}>
-                  <img className={avatarClass} alt="Ellipse" src="/figmaAssets/ellipse-9306.svg" />
-                  <div className="inline-flex flex-col items-start justify-center">
-                    <div className={pillName}>Larkin</div>
-                    <div className="inline-flex items-center gap-[3.54px]">
-                      <div className="w-[5px] h-[5px] bg-[#ff8331] rounded-full flex-shrink-0" />
-                      <div className={pillDist}>55m Away</div>
+
+              {/* pill: Larkin (Starts Mid-Right ~0deg) */}
+              <div className="animate-orbit" style={{ "--orbit-radius": "min(20vw, 120px)", "--orbit-duration": "40s", "--orbit-delay": "0s", "--static-angle": "0deg" } as React.CSSProperties}>
+                <div className="animate-float-wrapper pointer-events-auto" style={{ "--float-delay": "-1s" } as React.CSSProperties}>
+                  <div className="-translate-x-1/2 -translate-y-1/2 w-max">
+                    <div className={pillClass}>
+                      <img className={avatarClass} alt="Ellipse" src="/figmaAssets/ellipse-9306.svg" />
+                      <div className="inline-flex flex-col items-start justify-center">
+                        <div className={pillName}>Larkin</div>
+                        <div className="inline-flex items-center gap-[3.54px]">
+                          <div className="w-[5px] h-[5px] bg-[#ff8331] rounded-full flex-shrink-0" />
+                          <div className={pillDist}>55m Away</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+
             </div>
-          </div>
+          </motion.div>
 
           {/* ──────────────────────────────────────────────
               CARD 2: Offer a drink / swipe to show interest
           ────────────────────────────────────────────── */}
-          <div className={`${cardClass} h-[280px] sm:h-[360px] lg:h-[420px]`}>
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className={`${cardClass} h-[280px] sm:h-[360px] lg:h-[420px]`}
+          >
             <div className={topGlow} />
 
             {/* diagonal stripes */}
@@ -235,12 +265,18 @@ export const FeatureHighlightSection = (): JSX.Element => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* ──────────────────────────────────────────────
               CARD 3: Matched instantly
           ────────────────────────────────────────────── */}
-          <div className={`${cardClass} h-[240px] sm:h-[300px] lg:h-[361px]`}>
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className={`${cardClass} h-[240px] sm:h-[300px] lg:h-[361px]`}
+          >
             <div className={topGlow} />
 
             {/* title */}
@@ -254,50 +290,39 @@ export const FeatureHighlightSection = (): JSX.Element => {
             </div>
 
             {/* starburst decoration */}
-            <div className="absolute top-[20%] right-[8%] w-[18%] max-w-[145px]">
+           
+
+            {/* match UI */}
+            <div className="absolute bottom-[4%] left-1/2 -translate-x-1/2 w-[55%] max-w-[304px]">
+            
+              <div className="relative flex items-center justify-center">
+                 <div className="absolute -top-[50%]  w-[40%] max-w-[145px]">
               <img
                 className="w-full rotate-[-8.08deg]"
                 alt="Group"
                 src="/figmaAssets/group-1000010469.png"
               />
             </div>
-
-            {/* match UI */}
-            <div className="absolute bottom-[4%] left-1/2 -translate-x-1/2 w-[55%] max-w-[304px]">
-              <div className="relative">
                 <img
                   className="w-full"
                   alt="Rectangle"
-                  src="/figmaAssets/rectangle-23447.svg"
+                  src="/figmaAssets/its-match.png"
                 />
-                <img
-                  className="absolute top-[35%] left-1/2 -translate-x-1/2 w-[70%]"
-                  alt="Frame"
-                  src="/figmaAssets/frame-1171277690.svg"
-                />
-                <img
-                  className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[65%]"
-                  alt="Rectangle"
-                  src="/figmaAssets/rectangle-23446.svg"
-                />
-                <div className="absolute bottom-[5%] left-1/2 -translate-x-1/2 flex flex-col items-center whitespace-nowrap">
-                  <img
-                    className="w-[20px] h-[20px] sm:w-[25px] sm:h-[25px]"
-                    alt="Mdi check bold"
-                    src="/figmaAssets/mdi-check-bold.svg"
-                  />
-                  <span className="[font-family:'Poppins',Helvetica] font-medium text-[#ff8331] text-[11px] sm:text-[14.2px] text-center tracking-[-0.71px] leading-tight">
-                    Its A Match
-                  </span>
-                </div>
+               
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* ──────────────────────────────────────────────
               CARD 4: Find each other offline
           ────────────────────────────────────────────── */}
-          <div className={`${cardClass} h-[240px] sm:h-[300px] lg:h-[361px]`}>
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className={`${cardClass} h-[240px] sm:h-[300px] lg:h-[361px]`}
+          >
             <div className={topGlow} />
 
             {/* background shape */}
@@ -315,47 +340,17 @@ export const FeatureHighlightSection = (): JSX.Element => {
             </div>
 
             {/* phone mockup */}
-            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[42%] max-w-[261px] h-[80%]">
-              {/* phone body background */}
-              <div className="absolute inset-x-[3%] top-[3%] bottom-0 bg-[#fff9f4] rounded-[32px_32px_0px_0px]" />
-
-              {/* chat card inside phone */}
-              <div className="absolute top-[12%] left-[5%] right-[3%] h-[32%] bg-[#fefefeb2] rounded-[20px] shadow-[0px_2.76px_20.68px_#a5a5a540]">
-                <div className="absolute inset-x-0 top-0 h-[28%] bg-[#fff9f4] rounded-[20px_20px_5px_5px]" />
-                <div className="absolute top-[8%] left-[6%] flex items-center gap-1.5">
-                  <div
-                    className="w-[28px] h-[28px] sm:w-[34px] sm:h-[34px] flex-shrink-0 rounded-full bg-cover bg-center"
-                    style={{ backgroundImage: "url(/figmaAssets/ellipse-9306.svg)" }}
-                  />
-                  <div className="flex items-center gap-[4px]">
-                    <span className="[font-family:'Satoshi-Bold',Helvetica] font-bold text-black text-[10px] sm:text-[13px] tracking-[0] leading-tight">
-                      Larkin
-                    </span>
-                    <div className="w-[4px] h-[4px] sm:w-[4.88px] sm:h-[4.88px] bg-[#ff8331] rounded-full flex-shrink-0" />
-                  </div>
-                </div>
-              </div>
+            <div 
+              className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[82%] max-w-[300px] ">              
 
               {/* phone frame image */}
               <img
-                className="absolute top-0 left-0 w-full pointer-events-none"
+                className="absolute bottom-0  left-0 w-full pointer-events-none"
                 alt="Phone"
-                src="/figmaAssets/phone-035--converted-aaaa-01-1-1.png"
+                src="/figmaAssets/larkin-phone-wrap.png"
               />
-
-              {/* status bar */}
-              <div className="absolute top-[3%] left-[5%] right-[3%] h-[8%] flex justify-between items-center bg-[#ffffff1a] rounded-t-[32px] backdrop-blur-[3px] overflow-hidden px-2">
-                <span className="[font-family:'SF_Pro_Text-Semibold',Helvetica] font-normal text-[#0e1014] text-[8px] sm:text-[10.8px] tracking-[-0.26px] leading-tight">
-                  9:41
-                </span>
-                <img
-                  className="h-[7px] sm:h-[8.29px] w-auto"
-                  alt="Right side"
-                  src="/figmaAssets/right-side.png"
-                />
-              </div>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>

@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 export const ApplicationSection = (): JSX.Element => {
     return (
         <section className="relative w-full overflow-visible py-20 md:py-28 lg:py-32 bg-white">
@@ -24,7 +26,13 @@ export const ApplicationSection = (): JSX.Element => {
                 
 
                     {/* Left Content Area */}
-                    <div className="w-full lg:max-w-[620px] flex flex-col items-start text-left z-20">
+                    <motion.div 
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.6 }}
+                      className="w-full lg:max-w-[620px] flex flex-col items-start text-left z-20"
+                    >
                         {/* Tagline */}
                         <h2 className="text-[32px] sm:text-[40px] lg:text-[45px] font-semibold leading-[1.12] tracking-[0.02em] text-black  mb-4">
                             Your Next <span className="text-[#FF8331] ">Connection</span> is Already Nearby.
@@ -69,10 +77,16 @@ export const ApplicationSection = (): JSX.Element => {
                                 </div>
                             </a>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Right Content Area (Phone Mockups) */}
-                    <div className="relative w-full lg:w-auto mt-12 lg:mt-0 flex justify-center items-center lg:block">
+                    <motion.div 
+                      initial={{ opacity: 0, y: 120, scale: 0.95 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 1.0, ease: "easeOut", delay: 0.3 }}
+                      className="relative w-full lg:w-auto mt-12 lg:mt-0 flex justify-center items-center lg:block"
+                    >
                         {/* Desktop Mockup (Overflowing) */}
                         <div className="hidden lg:block absolute right-0 top-[-260px] w-[393px] h-[576px] pointer-events-none z-20">
                             {/* Left Shadow */}
@@ -101,7 +115,7 @@ export const ApplicationSection = (): JSX.Element => {
                                 className="w-full h-full object-contain"
                             />
                         </div>
-                    </div>
+                    </motion.div>
 
                 </div>
             </div>

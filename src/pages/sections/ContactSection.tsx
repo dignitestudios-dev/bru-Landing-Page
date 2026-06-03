@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { motion } from "framer-motion";
 
 const contactFields = [
   {
@@ -35,7 +36,13 @@ export const ContactSection = (): JSX.Element => {
         src="/figmaAssets/group-4829.png"
       />
       <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 items-center gap-10 px-6 md:px-10 lg:grid-cols-[minmax(0,600px)_minmax(0,624px)] lg:gap-4 lg:px-[100px]">
-        <div className="flex flex-col items-start justify-center gap-10 lg:pr-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-start justify-center gap-10 lg:pr-4"
+        >
           <header className="w-full max-w-[600px]">
             <h2 className="text-[42px] leading-[46px] tracking-[-0.84px] text-transparent md:text-[54px] md:leading-[60px] font-extrabold lg:text-[65px] lg:leading-[70px] ">
               <span className="text-black">We are always ready to </span>
@@ -73,8 +80,14 @@ export const ContactSection = (): JSX.Element => {
               ))}
             </div>
           </address>
-        </div>
-        <Card className="relative overflow-hidden rounded-[36px] border-0 bg-[#fee9db80] shadow-none backdrop-blur-[10px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(10px)_brightness(100%)] lg:rounded-[50px]">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <Card className="relative overflow-hidden rounded-[36px] border-0 bg-[#fee9db80] shadow-none backdrop-blur-[10px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(10px)_brightness(100%)] lg:rounded-[50px]">
           <CardContent className="relative z-10 p-6 md:p-8 lg:px-8 lg:pb-8 lg:pt-[50px]">
             <div className="flex flex-col gap-10">
               <header className="flex max-w-[560px] flex-col items-start gap-3">
@@ -121,7 +134,8 @@ export const ContactSection = (): JSX.Element => {
               </form>
             </div>
           </CardContent>
-        </Card>
+          </Card>
+        </motion.div>
       </div>
     </section>
   );

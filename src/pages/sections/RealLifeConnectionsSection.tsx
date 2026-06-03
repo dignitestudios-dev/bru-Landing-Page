@@ -1,4 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 const featureCards = [
   {
@@ -35,30 +36,56 @@ export const RealLifeConnectionsSection = (): JSX.Element => {
           src="/figmaAssets/group-5205.png"
         />
       <div className="relative mx-auto grid w-full max-w-[1440px] grid-cols-1 items-center gap-10 overflow-hidden px-4 sm:px-6 lg:grid-cols-[minmax(0,645px)_minmax(0,661px)] lg:gap-12 lg:px-[100px]">
-        <div className="relative order-2 lg:order-1">
-          <div className="relative mx-auto w-full max-w-[645px] rounded-[36px] bg-[#fee9db80] p-0 backdrop-blur-[10px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(10px)_brightness(100%)] sm:rounded-[42px] lg:rounded-[50px]">
+        <motion.div 
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7 }}
+          className="relative order-2 lg:order-1"
+        >
+          <motion.div 
+            initial={{ opacity: 0, y: 120, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 1.0, ease: "easeOut", delay: 0.2 }}
+            className="relative mx-auto w-full max-w-[645px] rounded-[36px] bg-[#fee9db80] p-0 backdrop-blur-[10px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(10px)_brightness(100%)] sm:rounded-[42px] lg:rounded-[50px]">
             <div className="overflow-hidden rounded-[36px] sm:rounded-[42px] lg:rounded-[50px]">
               <img
-                className=" object-cover"
+                className=" object-cover w-full h-auto"
                 alt="Splash mockup"
                 src="/figmaAssets/mm.png"
               />
             </div>
-          </div>
-          <div className="relative z-10  hidden lg:flex flex-col justify-center gap-44 h-[70%] px-3 sm:px-5 md:-mt-[62%] lg:absolute lg:left-0 lg:top-0 lg:mt-0 lg:w-full lg:px-0">
-            {featureCards.map((card) => (
-              <Card key={card.title} className={card.className}>
-                <CardContent className={card.contentClassName}>
-                  <h3 className={card.titleClassName}>{card.title}</h3>
-                  <p className={card.descriptionClassName}>
-                    {card.description}
-                  </p>
-                </CardContent>
-              </Card>
+          </motion.div>
+          <div className="relative z-10  flex flex-col justify-center gap-6 lg:gap-44 h-auto lg:h-[70%] px-3 sm:px-5 mt-6 lg:mt-5 lg:-mt-[62%] lg:absolute lg:left-0 lg:top-0 lg:w-full lg:px-0">
+            {featureCards.map((card, idx) => (
+              <motion.div 
+                key={card.title} 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 + idx * 0.2 }}
+                className={card.className}
+              >
+                <Card className="w-full  h-full border-0 bg-transparent shadow-none">
+                  <CardContent className={card.contentClassName}>
+                    <h3 className={card.titleClassName}>{card.title}</h3>
+                    <p className={card.descriptionClassName}>
+                      {card.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
-        </div>
-        <div className="relative z-10 order-1 flex max-w-[661px] flex-col items-start gap-4 lg:order-2">
+        </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7 }}
+          className="relative z-10 order-1 flex max-w-[661px] flex-col items-start gap-4 lg:order-2"
+        >
           <header className="flex flex-col items-start justify-center gap-2">
             <h2 className="mt-[-1.00px] font-extrabold  text-[42px]  leading-[48px] text-transparent sm:text-[52px] sm:leading-[60px] lg:w-[661px] lg:text-[65px] lg:leading-[75px]">
               <span className="tracking-[0] font-extrabold text-black">
@@ -83,7 +110,7 @@ export const RealLifeConnectionsSection = (): JSX.Element => {
               genuine connections
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

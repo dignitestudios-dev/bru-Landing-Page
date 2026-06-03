@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -13,7 +14,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full ">
-      <div className="mx-auto flex min-h-[80px] w-full max-w-[1240px] items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto py-5 flex min-h-[80px] w-full max-w-[1240px] items-center justify-between gap-6 px-4 sm:px-6 lg:px-8  backdrop-blur-md z-50">
         <a href="#home" aria-label="Bru home" className="flex shrink-0 flex-col items-center justify-center leading-none">
           <img className="h-auto w-[70px] object-contain" alt="Bru logo" src="/figmaAssets/rectangle-1.png" />
           <span className="mt-[-8px] [font-family:'Pacifico',Helvetica] text-[22px] font-normal leading-[normal] tracking-[-0.28px] text-[#444444]">
@@ -58,26 +59,34 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      {open && (
-        <div className="md:hidden bg-white border-t px-6 py-4 flex flex-col gap-4">
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="[font-family:'Poppins',Helvetica] text-base font-normal text-black hover:opacity-70 transition-opacity"
-            >
-              {item.label}
-            </a>
-          ))}
-          <Button
-            type="button"
-            className="w-full rounded-3xl bg-black py-3 [font-family:'Poppins',Helvetica] text-base font-medium text-white hover:bg-black/90"
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-white absolute w-full  px-6 py-4 flex flex-col gap-4 overflow-hidden"
           >
-            Download the App!
-          </Button>
-        </div>
-      )}
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="[font-family:'Poppins',Helvetica] text-base font-normal text-black hover:opacity-70 transition-opacity block py-2"
+              >
+                {item.label}
+              </a>
+            ))}
+            <Button
+              type="button"
+              className="w-full rounded-3xl bg-black py-3 [font-family:'Poppins',Helvetica] text-base font-medium text-white hover:bg-black/90 mt-2"
+            >
+              Download the App!
+            </Button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
-};
+}

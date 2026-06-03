@@ -188,6 +188,49 @@
   }
 }
 
+@keyframes orbit-spin {
+  from {
+    transform: rotate(0deg) translateX(var(--orbit-radius, 100px)) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(var(--orbit-radius, 100px)) rotate(-360deg);
+  }
+}
+
+.animate-orbit {
+  animation: orbit-spin var(--orbit-duration, 15s) linear infinite;
+  animation-delay: var(--orbit-delay, 0s);
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+
+@keyframes orbit-float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.05);
+  }
+}
+
+.animate-float-wrapper {
+  animation: orbit-float 4s ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-orbit {
+    animation: none;
+    transform: rotate(var(--static-angle, 0deg)) translateX(var(--orbit-radius, 100px)) rotate(calc(-1 * var(--static-angle, 0deg)));
+  }
+  .animate-float-wrapper {
+    animation: none;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

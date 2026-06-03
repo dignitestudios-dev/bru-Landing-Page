@@ -1,8 +1,14 @@
+import { motion } from "framer-motion";
+
 export const Footer = (): JSX.Element => {
   return (
-    <footer 
+    <motion.footer 
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }} 
       style={{
-        background: "linear-gradient(238.16deg, #994F1D 19.57%, #FF8331 82.32%)",
+        background: "linear-gradient(238.16deg, #994F1D 40%, #FF8331 72.32%)",
       }}
       className="relative w-full rounded-t-[50px] md:rounded-t-[100px] pt-24 mt-20 pb-12 px-6 md:px-12 lg:px-24 overflow-hidden z-10"
     >
@@ -133,6 +139,6 @@ export const Footer = (): JSX.Element => {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };

@@ -13,11 +13,12 @@ export const Bru = (): JSX.Element => {
   return (
     <main className="relative w-full overflow-hidden bg-white">
       <section id="home" className="relative overflow-hidden">
-   
+     <img src="/figmaAssets/full-bg-image.png" className="absolute right-0   h-[800px] object-cover z-0" />
           <Navbar />
           <div className="relative  z-20 ">
+          
            <HeroSection />
-           
+            <img src="/figmaAssets/filter-blur-color.png" className="absolute top-20 w-[100px] h-[500px] left-0 object-cover z-0" />
             
         
         </div>
