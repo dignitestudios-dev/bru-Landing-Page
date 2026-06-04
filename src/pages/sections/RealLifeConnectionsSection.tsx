@@ -51,13 +51,13 @@ export const RealLifeConnectionsSection = (): JSX.Element => {
             className="relative mx-auto w-full max-w-[645px] rounded-[36px] bg-[#fee9db80] p-0 backdrop-blur-[10px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(10px)_brightness(100%)] sm:rounded-[42px] lg:rounded-[50px]">
             <div className="overflow-hidden rounded-[36px] sm:rounded-[42px] lg:rounded-[50px]">
               <img
-                className=" object-cover w-full h-auto"
+                className=" object-cover "
                 alt="Splash mockup"
                 src="/figmaAssets/mm.png"
               />
             </div>
           </motion.div>
-          <div className="relative z-10  flex flex-col justify-center gap-6 lg:gap-44 h-auto lg:h-[70%] px-3 sm:px-5 mt-6 lg:mt-5 lg:-mt-[62%] lg:absolute lg:left-0 lg:top-0 lg:w-full lg:px-0">
+          <div className="relative z-10  flex flex-col justify-center gap-6 lg:gap-44 h-auto lg:h-[70%] px-3 sm:px-5 mt-6 lg:mt-10 lg:absolute lg:left-0 lg:top-0 lg:w-full lg:px-0">
             {featureCards.map((card, idx) => (
               <motion.div 
                 key={card.title} 
