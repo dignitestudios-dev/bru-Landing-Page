@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 
 export const Footer = (): JSX.Element => {
   return (
@@ -94,22 +95,22 @@ export const Footer = (): JSX.Element => {
             <nav aria-label="Footer Navigation">
               <ul className="flex flex-col sm:flex-row items-start sm:items-center gap-x-6 gap-y-3 text-white/95 [font-family:'Montserrat',sans-serif] text-sm sm:text-base font-normal">
                 <li>
-                  <a href="#home" className="hover:text-white hover:underline transition-all duration-200">
+                  <a href="/#home" className="hover:text-white hover:underline transition-all duration-200">
                     Home
                   </a>
                 </li>
                 <li>
-                  <a href="#how-it-works" className="hover:text-white hover:underline transition-all duration-200">
+                  <a href="/#how-it-works" className="hover:text-white hover:underline transition-all duration-200">
                     How it works
                   </a>
                 </li>
                 <li>
-                  <a href="#why-bru" className="hover:text-white hover:underline transition-all duration-200">
+                  <a href="/#why-bru" className="hover:text-white hover:underline transition-all duration-200">
                     Why use Bru?
                   </a>
                 </li>
                 <li>
-                  <a href="#contact" className="hover:text-white hover:underline transition-all duration-200">
+                  <a href="/#contact" className="hover:text-white hover:underline transition-all duration-200">
                     Contact Us
                   </a>
                 </li>
@@ -130,12 +131,12 @@ export const Footer = (): JSX.Element => {
             © 2026 Bru App. All Rights Reserved.
           </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-white hover:underline transition-all duration-200">
+            <Link href="/privacy-policy" className="hover:text-white hover:underline transition-all duration-200 cursor-pointer">
               Privacy Policy
-            </a>
-            <a href="#" className="hover:text-white hover:underline transition-all duration-200">
+            </Link>
+            <Link href="/terms-conditions" className="hover:text-white hover:underline transition-all duration-200 cursor-pointer">
               Terms & Conditions
-            </a>
+            </Link>
           </div>
         </div>
       </div>

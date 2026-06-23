@@ -3,19 +3,19 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Why Use Bru?", href: "#why-bru" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Home", href: "/#home" },
+  { label: "How it works", href: "/#how-it-works" },
+  { label: "Why Use Bru?", href: "/#why-bru" },
+  { label: "Contact Us", href: "/#contact" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full ">
+    <header className=" top-0 z-50 w-full ">
       <div className="mx-auto py-5 flex min-h-[80px] w-full max-w-[1240px] items-center justify-between gap-6 px-4 sm:px-6 lg:px-8  backdrop-blur-md z-50">
-        <a href="#home" aria-label="Bru home" className="flex shrink-0 flex-col items-center justify-center leading-none">
+        <a href="/#home" aria-label="Bru home" className="flex shrink-0 flex-col items-center justify-center leading-none">
           <img className="h-auto w-[70px] object-contain" alt="Bru logo" src="/figmaAssets/rectangle-1.png" />
           <span className="mt-[-8px] [font-family:'Pacifico',Helvetica] text-[22px] font-normal leading-[normal] tracking-[-0.28px] text-[#444444]">
             Bru
