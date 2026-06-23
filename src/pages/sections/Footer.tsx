@@ -1,23 +1,23 @@
 import { motion } from "framer-motion";
-import { Link } from "wouter";
+import { NavLink } from "react-router-dom";
 
 export const Footer = (): JSX.Element => {
   return (
-    <motion.footer 
+    <motion.footer
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.8 }} 
+      transition={{ duration: 0.8 }}
       style={{
         background: "linear-gradient(238.16deg, #994F1D 40%, #FF8331 72.32%)",
       }}
       className="relative w-full rounded-t-[50px] md:rounded-t-[100px] pt-24 mt-20 pb-12 px-6 md:px-12 lg:px-24 overflow-hidden z-10"
     >
       {/* Curved top blur shadow (Ellipse 9364) */}
-      <div 
+      <div
         className="absolute -top-[55px] left-1/2 -translate-x-1/2 w-[50%] h-[61px] bg-white rounded-[186.5px/30.5px] blur-[7px]"
       />
-  <img  src="/figmaAssets/footer.png" className="absolute -left-10 top-0 pointer-events-none z-10 object-cover "/>
+      <img src="/figmaAssets/footer.png" className="absolute -left-10 top-0 pointer-events-none z-10 object-cover " />
       {/* Arched Logo Cutout (Center Top) */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[280px] sm:w-[380px] h-[110px] sm:h-[200px]   flex items-center justify-center z-30">
         <a href="#" className="flex flex-col items-center justify-center leading-none mt-2">
@@ -26,7 +26,7 @@ export const Footer = (): JSX.Element => {
             alt="Bru logo"
             src="/figmaAssets/f-logo.png"
           />
-    
+
         </a>
       </div>
 
@@ -39,10 +39,10 @@ export const Footer = (): JSX.Element => {
 
       {/* Main Grid Content */}
       <div className="relative mx-auto w-full max-w-[1240px] grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-start z-10 mb-16">
-        
+
         {/* Left Column - App Info & Badges */}
         <div className="flex relative flex-col items-start text-left max-w-[420px]">
-        
+
           <h3 className="[font-family:'Montserrat',sans-serif] text-[20px] sm:text-[22px] font-semibold text-white mb-3">
             Check out the app!
           </h3>
@@ -57,10 +57,10 @@ export const Footer = (): JSX.Element => {
               href="#"
               className="group flex items-center gap-[9.48px] w-full sm:w-[177.82px] h-[45px] px-3.5 py-2 border border-white rounded-[364px] bg-white/50 hover:bg-white/70 active:scale-95 transition-all duration-300 shadow-sm justify-center "
             >
-              <img 
-                src="/figmaAssets/logos-apple-app-store.svg" 
-                alt="App Store" 
-                className="w-[22px] h-[22px] object-contain group-hover:scale-110 transition-transform duration-300" 
+              <img
+                src="/figmaAssets/logos-apple-app-store.svg"
+                alt="App Store"
+                className="w-[22px] h-[22px] object-contain group-hover:scale-110 transition-transform duration-300"
               />
               <div className="flex flex-col items-start leading-[1.1]">
                 <span className="[font-family:'Satoshi',sans-serif] text-[12px] font-medium tracking-[-0.24px] text-black">Available on the</span>
@@ -73,10 +73,10 @@ export const Footer = (): JSX.Element => {
               href="#"
               className="group flex items-center gap-[9.48px] w-full sm:w-[177.82px] h-[45px] px-3.5 py-2 border border-white rounded-[364px] bg-white/50 hover:bg-white/70 active:scale-95 transition-all duration-300 shadow-sm justify-center "
             >
-              <img 
-                src="/figmaAssets/google-play-6124997-1.png" 
-                alt="Google Play" 
-                className="w-[22px] h-[22px] object-contain group-hover:scale-110 transition-transform duration-300" 
+              <img
+                src="/figmaAssets/google-play-6124997-1.png"
+                alt="Google Play"
+                className="w-[22px] h-[22px] object-contain group-hover:scale-110 transition-transform duration-300"
               />
               <div className="flex flex-col items-start leading-[1.1]">
                 <span className="[font-family:'Satoshi',sans-serif] text-[12px] font-medium tracking-[-0.24px] text-black">Get it on</span>
@@ -125,18 +125,18 @@ export const Footer = (): JSX.Element => {
       <div className="relative mx-auto w-full max-w-[1240px] z-10">
         {/* Divider Line */}
         <div className="w-full h-px bg-white/50 mb-8" />
-        
+
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 w-full text-white [font-family:'Montserrat',sans-serif] text-sm sm:text-base font-medium">
           <p className="text-center md:text-left">
             © 2026 Bru App. All Rights Reserved.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="/privacy-policy" className="hover:text-white hover:underline transition-all duration-200 cursor-pointer">
+            <NavLink to="/privacy-policy" className="hover:text-white hover:underline transition-all duration-200 cursor-pointer">
               Privacy Policy
-            </Link>
-            <Link href="/terms-conditions" className="hover:text-white hover:underline transition-all duration-200 cursor-pointer">
+            </NavLink>
+            <NavLink to="/terms-conditions" className="hover:text-white hover:underline transition-all duration-200 cursor-pointer">
               Terms & Conditions
-            </Link>
+            </NavLink>
           </div>
         </div>
       </div>
