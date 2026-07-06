@@ -1,6 +1,81 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 
 export const FeatureHighlightSection = (): JSX.Element => {
+
+  // ── Rotating drink data for Card 2 (using PNG images) ──
+  const drinks = [
+    { img: "/figmaAssets/cofee.png",   label: "Coffee",   bg: "#fff3e0" },
+    { img: "/figmaAssets/tea.png",     label: "Tea",      bg: "#e8f5e9" },
+    { img: "/figmaAssets/beer.png",    label: "Beer",     bg: "#fff8e1" },
+    { img: "/figmaAssets/coctail.png", label: "Cocktail", bg: "#fce4ec" },
+  ];
+  const [drinkIdx, setDrinkIdx] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setDrinkIdx(i => (i + 1) % drinks.length), 2000);
+    return () => clearInterval(t);
+  }, []);
+  const currentDrink = drinks[drinkIdx];
+
+  // ── Card 3 match animation ──
+  const card3Ref = useRef<HTMLDivElement>(null);
+  const card3InView = useInView(card3Ref, { once: true, margin: "-60px" });
+
+  // Confetti particles – 12 pieces spread around the celebration image
+  const confettiPieces = [
+    { angle: 0, dist: 52, color: "#FF8331", size: 7, delay: 0.15 },
+    { angle: 30, dist: 60, color: "#FFD700", size: 5, delay: 0.18 },
+    { angle: 60, dist: 55, color: "#FF4081", size: 8, delay: 0.16 },
+    { angle: 90, dist: 58, color: "#00BCD4", size: 5, delay: 0.20 },
+    { angle: 120, dist: 50, color: "#FF8331", size: 6, delay: 0.17 },
+    { angle: 150, dist: 62, color: "#9C27B0", size: 7, delay: 0.22 },
+    { angle: 180, dist: 54, color: "#FFD700", size: 5, delay: 0.19 },
+    { angle: 210, dist: 58, color: "#FF4081", size: 8, delay: 0.15 },
+    { angle: 240, dist: 52, color: "#4CAF50", size: 6, delay: 0.21 },
+    { angle: 270, dist: 60, color: "#FF8331", size: 5, delay: 0.18 },
+    { angle: 300, dist: 56, color: "#FFD700", size: 7, delay: 0.16 },
+    { angle: 330, dist: 62, color: "#00BCD4", size: 5, delay: 0.23 },
+  ];
+
+  // ── Card 4 chat preview animation ──
+  // Steps: 0 = empty, 1 = first bubble, 2 = second bubble, 3 = third bubble.
+  // Then loops back to 0. Timings approximate the reference video (~0.7s / 1.5s / 1.5s / 1.5s).
+  const [chatStep, setChatStep] = useState(0);
+  useEffect(() => {
+    const stepDurations = [700, 1500, 1500, 1500]; // ms to wait while on this step before advancing
+    let step = 0;
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    const advance = () => {
+      timeoutId = setTimeout(() => {
+        step = (step + 1) % stepDurations.length;
+        setChatStep(step);
+        advance();
+      }, stepDurations[step]);
+    };
+
+    advance();
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  const chatMessages = [
+    {
+      from: "them" as const,
+      text: "Hi, saw your Drink offer!",
+      time: "10:02 PM",
+    },
+    {
+      from: "me" as const,
+      text: "haha yes! You were at the table by the window right?",
+      time: "10:04 PM",
+    },
+    {
+      from: "them" as const,
+      text: "OMG Yes 🥳 Small world. coffee this weekend?",
+      time: "10:06 PM",
+    },
+  ];
+
   const cardClass =
     "relative rounded-3xl overflow-hidden " +
     "shadow-[inset_-10px_10px_20px_#ffffff40,inset_0_1px_0_rgba(255,255,255,0.40),inset_1px_0_0_rgba(255,255,255,0.32),inset_0_-1px_1px_rgba(0,0,0,0.13),inset_-1px_0_1px_rgba(0,0,0,0.11)] " +
@@ -46,7 +121,7 @@ export const FeatureHighlightSection = (): JSX.Element => {
           <div className="inline-flex flex-col items-start justify-center gap-2">
             <div className=" font-extrabold text-transparent text-[clamp(38px,5.5vw,70px)] text-center tracking-[1.40px] leading-[1.1] whitespace-nowrap">
               <span className="text-black tracking-[0.98px]">How It </span>
-              <span className="text-white tracking-[0.98px]">works</span>
+              <span className="text-white tracking-[0.98px]">Works</span>
             </div>
             <div className="inline-flex items-center gap-[9.74px]">
               <img
@@ -89,7 +164,7 @@ export const FeatureHighlightSection = (): JSX.Element => {
           {/* ──────────────────────────────────────────────
               CARD 1: Open Bru & see people around you
           ────────────────────────────────────────────── */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -114,12 +189,12 @@ export const FeatureHighlightSection = (): JSX.Element => {
             />
 
             {/* phone */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 120, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 1.0, delay: 0.3, ease: "easeOut" }}
-              className="absolute right-5 bottom-0 w-[100%] max-w-[230px] h-[72%]">             
+              className="absolute right-5 bottom-0 w-[100%] max-w-[230px] h-[72%]">
               <img
                 className="absolute top-0 left-0 w-full h-full object-contain object-bottom"
                 alt="Phone"
@@ -129,7 +204,7 @@ export const FeatureHighlightSection = (): JSX.Element => {
 
             {/* user pills - orbital animation around center pin */}
             <div className="absolute top-[60%] left-[32.5%] w-0 h-0 z-20 pointer-events-none">
-              
+
               {/* pill: Zion Lark (Starts Top-Left ~225deg) */}
               <div className="animate-orbit" style={{ "--orbit-radius": "min(22vw, 120px)", "--orbit-duration": "40s", "--orbit-delay": "-25s", "--static-angle": "225deg" } as React.CSSProperties}>
                 <div className="animate-float-wrapper pointer-events-auto" style={{ "--float-delay": "0s" } as React.CSSProperties}>
@@ -137,7 +212,7 @@ export const FeatureHighlightSection = (): JSX.Element => {
                     <div className={pillClass}>
                       <img className={avatarClass} alt="Ellipse" src="/figmaAssets/ellipse-9339-3.svg" />
                       <div className="inline-flex flex-col items-start justify-center">
-                        <div className={pillName}>Zion Lark</div>
+                        <div className={`${pillName} `}>Zion Lark</div>
                         <div className="inline-flex items-center gap-[3.54px]">
                           <div className="w-[5px] h-[5px] bg-[#ff8331] rounded-full flex-shrink-0" />
                           <div className={pillDist}>55m Away</div>
@@ -153,7 +228,7 @@ export const FeatureHighlightSection = (): JSX.Element => {
                 <div className="animate-float-wrapper pointer-events-auto" style={{ "--float-delay": "-2s" } as React.CSSProperties}>
                   <div className="-translate-x-1/2 -translate-y-1/2 w-max">
                     <div className={pillClass}>
-                      <img className={avatarClass} alt="Ellipse" src="/figmaAssets/ellipse-9339-1.svg" />
+                      <img className={avatarClass} alt="Ellipse" src="/figmaAssets/ellipse-9306.svg" />
                       <div className="inline-flex flex-col items-start justify-center">
                         <div className={pillName}>Remi</div>
                         <div className="inline-flex items-center gap-[3.54px]">
@@ -171,7 +246,7 @@ export const FeatureHighlightSection = (): JSX.Element => {
                 <div className="animate-float-wrapper pointer-events-auto" style={{ "--float-delay": "-1s" } as React.CSSProperties}>
                   <div className="-translate-x-1/2 -translate-y-1/2 w-max">
                     <div className={pillClass}>
-                      <img className={avatarClass} alt="Ellipse" src="/figmaAssets/ellipse-9306.svg" />
+                      <img className={avatarClass} alt="Ellipse" src="/figmaAssets/ellipse-9339-1.svg" />
                       <div className="inline-flex flex-col items-start justify-center">
                         <div className={pillName}>Larkin</div>
                         <div className="inline-flex items-center gap-[3.54px]">
@@ -190,7 +265,7 @@ export const FeatureHighlightSection = (): JSX.Element => {
           {/* ──────────────────────────────────────────────
               CARD 2: Offer a drink / swipe to show interest
           ────────────────────────────────────────────── */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -213,38 +288,62 @@ export const FeatureHighlightSection = (): JSX.Element => {
             {/* title */}
             <div className={`absolute top-[7%] left-[5%] right-[5%] ${cardTitle}`}>
               <span className="text-[#983c00] font-extrabold leading-9">Offer</span>
-              <span className="text-white font-extrabold leading-9"> a drink&nbsp;&nbsp;or </span>
-              <span className="text-[#983c00] font-extrabold leading-9">swipe </span>
-              <span className="text-white leading-9 font-extrabold">to show interest</span>
+              <span className="text-white font-extrabold leading-9"> a </span>
+              <span className="text-[#983c00] font-extrabold leading-9">Drink</span>
             </div>
 
             {/* feature pills */}
             <div className="absolute top-[30%] left-[5%] right-[5%] flex flex-col gap-3 sm:gap-4">
 
-              {/* Offer A Drink card */}
-              <div className="relative w-full bg-[#fff9f4cc] rounded-[29px] shadow-[0px_4px_30px_#83838340] px-3 py-2.5 rotate-[-3.03deg]">
+              {/* Offer A Drink card — rotating icon + text */}
+              <div className="relative w-full bg-[#fff9f4cc] rounded-[29px] shadow-[0px_4px_30px_#83838340] px-3 py-2.5 rotate-[-3.03deg] overflow-hidden">
                 <div className="flex items-center gap-2.5">
-                  <div className="relative w-[50px] h-[50px] sm:w-[58px] sm:h-[58px] flex-shrink-0 rounded-[29px] bg-white flex items-center justify-center">
-                    <span className="text-[26px] sm:text-[32px] leading-none">☕</span>
-                    <img
-                      className="absolute inset-0 w-full h-full"
-                      alt="Frame"
-                      src="/figmaAssets/frame-1171277672.svg"
-                    />
+
+                  {/* Animated icon bubble */}
+                  <div className="relative w-[50px] h-[50px] sm:w-[58px] sm:h-[58px] flex-shrink-0 rounded-[29px] flex items-center justify-center overflow-hidden">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={drinkIdx}
+                        initial={{ opacity: 0, scale: 0.5, rotate: -30 }}
+                        animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                        exit={{ opacity: 0, scale: 0.5, rotate: 30 }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        className="absolute inset-0 flex items-center justify-center rounded-[29px]"
+                        style={{ backgroundColor: currentDrink.bg }}
+                      >
+                        <img
+                          src={currentDrink.img}
+                          alt={currentDrink.label}
+                          className="w-[28px] h-[28px] sm:w-[34px] sm:h-[34px] object-contain"
+                        />
+                      </motion.div>
+                    </AnimatePresence>
                   </div>
+
+                  {/* Animated text */}
                   <div className="flex flex-col min-w-0">
-                    <div className="flex items-center gap-1 flex-wrap">
-                      <span className="[font-family:'Poppins',Helvetica] font-bold text-[#ff8331] text-[13px] sm:text-[18.6px] tracking-[-0.93px] leading-tight">
+                    <div className="flex items-center gap-1 flex-wrap h-[24px] sm:h-[28px] overflow-hidden relative">
+                      <span className="[font-family:'Poppins',Helvetica] font-bold text-[#ff8331] text-[13px] sm:text-[18.6px] tracking-[-0.93px] leading-tight flex-shrink-0">
                         Offer A
                       </span>
-                      <span className="[font-family:'Poppins',Helvetica] font-bold text-[#ff8331] text-[13px] sm:text-[18.6px] tracking-[-0.93px] leading-tight">
-                        Tea
-                      </span>
+                      <AnimatePresence mode="wait">
+                        <motion.span
+                          key={drinkIdx}
+                          initial={{ opacity: 0, y: 12 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -12 }}
+                          transition={{ duration: 0.35, ease: "easeInOut" }}
+                          className="[font-family:'Poppins',Helvetica] font-bold text-[#ff8331] text-[13px] sm:text-[18.6px] tracking-[-0.93px] leading-tight"
+                        >
+                          {currentDrink.label}
+                        </motion.span>
+                      </AnimatePresence>
                     </div>
                     <span className="[font-family:'Poppins',Helvetica] font-normal text-black text-[11px] sm:text-sm tracking-[-0.70px] leading-tight">
                       They see your invite they decide
                     </span>
                   </div>
+
                 </div>
               </div>
 
@@ -270,12 +369,13 @@ export const FeatureHighlightSection = (): JSX.Element => {
           {/* ──────────────────────────────────────────────
               CARD 3: Matched instantly
           ────────────────────────────────────────────── */}
-          <motion.div 
+          <motion.div
+            ref={card3Ref}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`${cardClass} h-[240px] sm:h-[300px] lg:h-[361px]`}
+            className={`${cardClass} h-[240px] sm:h-[300px] lg:h-[401px]`}
           >
             <div className={topGlow} />
 
@@ -289,26 +389,85 @@ export const FeatureHighlightSection = (): JSX.Element => {
               <span className="text-[#983c00] font-extrabold">matched instantly.</span>
             </div>
 
-            {/* starburst decoration */}
-           
-
-            {/* match UI */}
+            {/* match UI — premium slide-up + confetti */}
             <div className="absolute bottom-[4%] left-1/2 -translate-x-1/2 w-[55%] max-w-[304px]">
-            
               <div className="relative flex items-center justify-center">
-                 <div className="absolute -top-[50%]  w-[40%] max-w-[145px]">
-              <img
-                className="w-full rotate-[-8.08deg]"
-                alt="Group"
-                src="/figmaAssets/group-1000010469.png"
-              />
-            </div>
-                <img
+
+                {/* ── Celebration image — slides up with slight delay ── */}
+                <motion.div
+                  className="absolute -top-[50%] w-[40%] max-w-[145px] z-20"
+                  initial={{ opacity: 0, y: 18, scale: 0.8 }}
+                  animate={card3InView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                  transition={{
+                    duration: 0.55,
+                    delay: 0.95,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                >
+                  <img
+                    className="w-full rotate-[-8.08deg]"
+                    alt="Group"
+                    src="/figmaAssets/group-1000010469.png"
+                  />
+
+                  {/* ── Confetti burst around celebration icon ── */}
+                  <div className="absolute inset-0 pointer-events-none">
+                    {confettiPieces.map((p, i) => {
+                      const rad = (p.angle * Math.PI) / 180;
+                      const tx = Math.cos(rad) * p.dist;
+                      const ty = Math.sin(rad) * p.dist;
+                      return (
+                        <motion.div
+                          key={i}
+                          className="absolute rounded-sm"
+                          style={{
+                            width: p.size,
+                            height: p.size,
+                            backgroundColor: p.color,
+                            top: "50%",
+                            left: "50%",
+                            marginTop: -p.size / 2,
+                            marginLeft: -p.size / 2,
+                            transformOrigin: "center",
+                          }}
+                          initial={{ opacity: 0, x: 0, y: 0, scale: 0, rotate: 0 }}
+                          animate={
+                            card3InView
+                              ? {
+                                opacity: [0, 1, 1, 0],
+                                x: [0, tx * 0.6, tx],
+                                y: [0, ty * 0.6, ty],
+                                scale: [0, 1.3, 1],
+                                rotate: [0, 180, 360],
+                              }
+                              : {}
+                          }
+                          transition={{
+                            duration: 0.9,
+                            delay: p.delay + 0.8,
+                            ease: [0.22, 1, 0.36, 1],
+                            opacity: { times: [0, 0.15, 0.6, 1] },
+                          }}
+                        />
+                      );
+                    })}
+                  </div>
+                </motion.div>
+
+                {/* ── Match card — main slide-up animation ── */}
+                <motion.img
                   className="w-full"
-                  alt="Rectangle"
+                  alt="It's a Match"
                   src="/figmaAssets/its-match.png"
+                  initial={{ opacity: 0, y: 60, scale: 0.95 }}
+                  animate={card3InView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.5,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                 />
-               
+
               </div>
             </div>
           </motion.div>
@@ -316,12 +475,12 @@ export const FeatureHighlightSection = (): JSX.Element => {
           {/* ──────────────────────────────────────────────
               CARD 4: Find each other offline
           ────────────────────────────────────────────── */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className={`${cardClass} h-[240px] sm:h-[300px] lg:h-[361px]`}
+            className={`${cardClass} h-[340px] sm:h-[300px] lg:h-[401px]`}
           >
             <div className={topGlow} />
 
@@ -335,20 +494,55 @@ export const FeatureHighlightSection = (): JSX.Element => {
             {/* title */}
             <div className={`absolute top-[7%] left-[5%] right-[5%] ${cardTitle}`}>
               <span className="text-white font-extrabold">Find each other, then take it </span>
-              <br/>
+              <br />
               <span className="text-[#983c00] font-extrabold">offline in real life.</span>
             </div>
 
-            {/* phone mockup */}
-            <div 
-              className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[82%] max-w-[300px] ">              
+            {/* phone mockup — real phone-frame image, chat animates below the header inside it */}
+            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[82%] max-w-[360px]">
+              <div className="relative w-full">
 
-              {/* phone frame image */}
-              <img
-                className="absolute bottom-0  left-0 w-full pointer-events-none"
-                alt="Phone"
-                src="/figmaAssets/larkin-phone-wrap.png"
-              />
+                {/* phone frame image — notch, status bar & "Larkin" header are baked into this asset */}
+                <img
+                  className="relative w-full pointer-events-none select-none"
+                  alt="Phone"
+                  src="/figmaAssets/larkin-phone-wrap.png"
+                />
+
+                {/* chat messages — overlaid below the header, sequential top-to-bottom reveal, then loop */}
+                <div className="absolute inset-x-0 mt-2 top-[34%] bottom-0 overflow-hidden px-2 pointer-events-none">
+                  <div className="flex flex-col gap-2">
+                    <AnimatePresence>
+                      {chatMessages.slice(0, chatStep).map((msg, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, y: 10, scale: 0.8 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.35, ease: "easeOut" }}
+                          className={`max-w-[78%] rounded-2xl px-3 py-2 shadow-sm ${msg.from === "me"
+                            ? "self-end mr-8 bg-[#ff8331] rounded-tr-sm"
+                            : "self-start ml-8 bg-white rounded-tl-sm"
+                            }`}
+                        >
+                          <p
+                            className={`[font-family:'Poppins',Helvetica] text-[10.5px] leading-snug ${msg.from === "me" ? "text-white" : "text-black"
+                              }`}
+                          >
+                            {msg.text}
+                          </p>
+                          <span
+                            className={`[font-family:'Poppins',Helvetica] text-[7.5px] block mt-0.5 ${msg.from === "me" ? "text-white/70" : "text-black/40"
+                              }`}
+                          >
+                            {msg.time}
+                          </span>
+                        </motion.div>
+                      ))}
+                    </AnimatePresence>
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
 

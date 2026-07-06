@@ -101,7 +101,7 @@ export const Footer = (): JSX.Element => {
                 </li>
                 <li>
                   <a href="/#how-it-works" className="hover:text-white hover:underline transition-all duration-200">
-                    How it works
+                    How it Works
                   </a>
                 </li>
                 <li>

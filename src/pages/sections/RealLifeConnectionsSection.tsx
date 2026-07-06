@@ -18,7 +18,7 @@ const featureCards = [
     description:
       "Break the ice over text and continue the conversation in-person",
     className:
-      "ml-[6%] mt-6 w-full max-w-[251px] rounded-[16.92px] border-0 bg-[#fff9f4] shadow-[0px_2.32px_17.43px_#83838340]",
+      " mt-10 w-full max-w-[251px] rounded-[16.92px] border-0 bg-[#fff9f4] shadow-[0px_2.32px_17.43px_#83838340]",
     contentClassName: "px-4 py-[7px]",
     titleClassName:
       "[font-family:'Poppins',Helvetica] text-sm font-bold leading-[normal] tracking-[-0.70px] text-[#ff8331]",
@@ -53,7 +53,7 @@ export const RealLifeConnectionsSection = (): JSX.Element => {
               <img
                 className=" object-cover "
                 alt="Splash mockup"
-                src="/figmaAssets/mm.png"
+                src="/figmaAssets/mm-3.png"
               />
             </div>
           </motion.div>
