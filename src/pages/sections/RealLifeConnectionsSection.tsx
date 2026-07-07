@@ -57,7 +57,7 @@ export const RealLifeConnectionsSection = (): JSX.Element => {
               />
             </div>
           </motion.div>
-          <div className="relative z-10  flex flex-col justify-center gap-6 lg:gap-44 h-auto lg:h-[70%] px-3 sm:px-5 mt-6 lg:mt-10 lg:absolute lg:left-0 lg:top-0 lg:w-full lg:px-0">
+          <div className="relative z-10 ml-5 flex flex-col justify-center gap-6 lg:gap-44 h-auto lg:h-[70%] px-3 sm:px-5 mt-6 lg:mt-10 lg:absolute lg:left-0 lg:top-0 lg:w-full lg:px-0">
             {featureCards.map((card, idx) => (
               <motion.div 
                 key={card.title} 

@@ -5,9 +5,9 @@ export const FeatureHighlightSection = (): JSX.Element => {
 
   // ── Rotating drink data for Card 2 (using PNG images) ──
   const drinks = [
-    { img: "/figmaAssets/cofee.png",   label: "Coffee",   bg: "#fff3e0" },
-    { img: "/figmaAssets/tea.png",     label: "Tea",      bg: "#e8f5e9" },
-    { img: "/figmaAssets/beer.png",    label: "Beer",     bg: "#fff8e1" },
+    { img: "/figmaAssets/cofee.png", label: "Coffee", bg: "#fff3e0" },
+    { img: "/figmaAssets/tea.png", label: "Tea", bg: "#e8f5e9" },
+    { img: "/figmaAssets/beer.png", label: "Beer", bg: "#fff8e1" },
     { img: "/figmaAssets/coctail.png", label: "Cocktail", bg: "#fce4ec" },
   ];
   const [drinkIdx, setDrinkIdx] = useState(0);
@@ -375,7 +375,7 @@ export const FeatureHighlightSection = (): JSX.Element => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className={`${cardClass} h-[240px] sm:h-[300px] lg:h-[401px]`}
+            className={`${cardClass} h-[240px] sm:h-[300px] lg:h-[441px]`}
           >
             <div className={topGlow} />
 
@@ -394,14 +394,26 @@ export const FeatureHighlightSection = (): JSX.Element => {
               <div className="relative flex items-center justify-center">
 
                 {/* ── Celebration image — slides up with slight delay ── */}
+
+                {/* ── Celebration image — continuous bottom-to-top loop ── */}
                 <motion.div
                   className="absolute -top-[50%] w-[40%] max-w-[145px] z-20"
-                  initial={{ opacity: 0, y: 18, scale: 0.8 }}
-                  animate={card3InView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                  animate={
+                    card3InView
+                      ? {
+                        opacity: [0, 1, 1, 0],
+                        y: [20, 0, 0, 20],
+                        scale: [0.8, 1, 1, 0.8],
+                      }
+                      : { opacity: 0, y: 20, scale: 0.8 }
+                  }
                   transition={{
-                    duration: 0.55,
-                    delay: 0.95,
-                    ease: [0.22, 1, 0.36, 1],
+                    duration: 4,
+                    delay: 0.5,
+                    ease: "easeInOut",
+                    times: [0, 0.22, 0.75, 1],
+                    repeat: Infinity,
+                    repeatDelay: 0.2,
                   }}
                 >
                   <img
@@ -410,12 +422,15 @@ export const FeatureHighlightSection = (): JSX.Element => {
                     src="/figmaAssets/group-1000010469.png"
                   />
 
-                  {/* ── Confetti burst around celebration icon ── */}
+                  {/* ── Confetti burst — loops in sync with celebration image ── */}
                   <div className="absolute inset-0 pointer-events-none">
                     {confettiPieces.map((p, i) => {
                       const rad = (p.angle * Math.PI) / 180;
                       const tx = Math.cos(rad) * p.dist;
                       const ty = Math.sin(rad) * p.dist;
+                      // Each confetti fires at ~1s into each 4.4s total cycle (4s + 0.2 repeatDelay + 0.5 initial delay)
+                      const cycleDuration = 0.9;
+                      const cycleRepeatDelay = 4 + 0.2 - cycleDuration; // = 3.3s
                       return (
                         <motion.div
                           key={i}
@@ -430,7 +445,6 @@ export const FeatureHighlightSection = (): JSX.Element => {
                             marginLeft: -p.size / 2,
                             transformOrigin: "center",
                           }}
-                          initial={{ opacity: 0, x: 0, y: 0, scale: 0, rotate: 0 }}
                           animate={
                             card3InView
                               ? {
@@ -440,12 +454,14 @@ export const FeatureHighlightSection = (): JSX.Element => {
                                 scale: [0, 1.3, 1],
                                 rotate: [0, 180, 360],
                               }
-                              : {}
+                              : { opacity: 0, x: 0, y: 0, scale: 0 }
                           }
                           transition={{
-                            duration: 0.9,
-                            delay: p.delay + 0.8,
+                            duration: cycleDuration,
+                            delay: p.delay + 0.5 + 0.8,
                             ease: [0.22, 1, 0.36, 1],
+                            repeat: Infinity,
+                            repeatDelay: cycleRepeatDelay,
                             opacity: { times: [0, 0.15, 0.6, 1] },
                           }}
                         />
@@ -480,7 +496,7 @@ export const FeatureHighlightSection = (): JSX.Element => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className={`${cardClass} h-[340px] sm:h-[300px] lg:h-[401px]`}
+            className={`${cardClass} h-[380px] sm:h-[300px] lg:h-[441px]`}
           >
             <div className={topGlow} />
 
@@ -494,12 +510,12 @@ export const FeatureHighlightSection = (): JSX.Element => {
             {/* title */}
             <div className={`absolute top-[7%] left-[5%] right-[5%] ${cardTitle}`}>
               <span className="text-white font-extrabold">Find each other, then take it </span>
-              <br />
+              <br /> 
               <span className="text-[#983c00] font-extrabold">offline in real life.</span>
             </div>
 
             {/* phone mockup — real phone-frame image, chat animates below the header inside it */}
-            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[82%] max-w-[360px]">
+            <div className="absolute bottom-0 md:-bottom-7 left-1/2 -translate-x-1/2 w-[88%] md:w-[82%] max-w-[390px]">
               <div className="relative w-full">
 
                 {/* phone frame image — notch, status bar & "Larkin" header are baked into this asset */}
@@ -510,7 +526,7 @@ export const FeatureHighlightSection = (): JSX.Element => {
                 />
 
                 {/* chat messages — overlaid below the header, sequential top-to-bottom reveal, then loop */}
-                <div className="absolute inset-x-0 mt-2 top-[34%] bottom-0 overflow-hidden px-2 pointer-events-none">
+                <div className="absolute inset-x-0 top-[43%] bottom-[5%] overflow-hidden px-2 pointer-events-none">
                   <div className="flex flex-col gap-2">
                     <AnimatePresence>
                       {chatMessages.slice(0, chatStep).map((msg, i) => (

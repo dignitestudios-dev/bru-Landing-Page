@@ -15,13 +15,17 @@ export default function Navbar() {
   return (
     <header className=" top-0 z-50 w-full ">
       <div className=" py-5 flex min-h-[80px] w-full   items-center justify-center    backdrop-blur-md z-50">
-        <div className="flex items-center justify-between gap-6 px-4 sm:px-6 lg:px-8 w-full max-w-[1400px]" >
-          <a href="/#home" aria-label="Bru home" className="flex shrink-0 flex-col items-center justify-center leading-none">
+        <div className="relative flex items-center px-4 sm:px-6 lg:px-8 w-full max-w-[1400px]">
+          {/* Invisible spacer on mobile to balance the hamburger on the right */}
+          <div className="md:hidden w-[44px]" />
+
+          {/* Logo — centered on mobile, left-aligned on md+ */}
+          <a href="/#home" aria-label="Bru home" className="shrink-0 mt-6 flex flex-col items-center justify-center leading-none absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0">
             <img className="h-auto w-[80px] md:w-[110px] object-contain" alt="Bru logo" src="/figmaAssets/f-logo.png" />
           </a>
 
-          <nav aria-label="Primary" className="hidden md:block ">
-            <ul className="flex items-center justify-center gap-6 lg:gap-8">
+          <nav aria-label="Primary" className="hidden w-full md:block ml-8">
+            <ul className="flex items-center w-full justify-center gap-6 lg:gap-8">
               {navItems.map((item) => (
                 <li key={item.label}>
                   <a
@@ -35,7 +39,7 @@ export default function Navbar() {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 ml-auto">
             <Button
               type="button"
               className="hidden md:flex h-auto shrink-0 rounded-3xl bg-black px-6 py-3 [font-family:'Poppins',Helvetica] text-base font-medium leading-[normal] tracking-[-0.48px] text-white hover:bg-black/90 sm:px-8"
@@ -65,7 +69,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white z-50 absolute w-full  px-6 py-4 flex flex-col gap-4 overflow-hidden"
+            className="md:hidden mt-5 bg-white z-50 absolute w-full  px-6 py-4 flex flex-col gap-4 overflow-hidden"
           >
             {navItems.map((item) => (
               <a

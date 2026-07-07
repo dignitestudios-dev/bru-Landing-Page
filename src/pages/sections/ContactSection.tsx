@@ -28,6 +28,16 @@ const contactMethods = [
 ] as const;
 
 export const ContactSection = (): JSX.Element => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const name = (form.elements.namedItem("fullName") as HTMLInputElement)?.value || "";
+    const email = (form.elements.namedItem("email") as HTMLInputElement)?.value || "";
+    const message = (form.elements.namedItem("message") as HTMLTextAreaElement)?.value || "";
+    const subject = encodeURIComponent(`Message from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+    window.location.href = `mailto:support@brudating.com?subject=${subject}&body=${body}`;
+  };
   return (
     <section className="relative w-full overflow-hidden  py-16 md:py-20 lg:py-24">
       <img
@@ -100,7 +110,7 @@ export const ContactSection = (): JSX.Element => {
                   shape the future of real-world connections.
                 </p>
               </header>
-              <form className="flex max-w-[560px] flex-col items-start gap-4">
+              <form onSubmit={handleSubmit} className="flex max-w-[560px] flex-col items-start gap-4">
                 {contactFields.map((field) => (
                   <Input
                     key={field.id}
