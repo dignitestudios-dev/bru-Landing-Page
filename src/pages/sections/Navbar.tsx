@@ -20,8 +20,8 @@ export default function Navbar() {
           <div className="md:hidden w-[44px]" />
 
           {/* Logo — centered on mobile, left-aligned on md+ */}
-          <a href="/#home" aria-label="Bru home" className="shrink-0 mt-6 flex flex-col items-center justify-center leading-none absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0">
-            <img className="h-auto w-[80px] md:w-[110px] object-contain" alt="Bru logo" src="/figmaAssets/f-logo.png" />
+          <a href="/#home" aria-label="Bru home" className="shrink-0 mt-6 md:mt-0 flex flex-col items-center justify-center leading-none absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0">
+            <img className="h-auto w-[80px] md:w-[100px] object-contain" alt="Bru logo" src="/figmaAssets/f-logo.png" />
           </a>
 
           <nav aria-label="Primary" className="hidden w-full md:block ml-8">
