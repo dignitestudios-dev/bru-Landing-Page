@@ -17,7 +17,7 @@ export default function PrivacyPolicy() {
       <Navbar />
 
       {/* Main content container */}
-      <main className="flex-grow px-24 relative overflow-hidden">
+      <main className="flex-grow md:px-24 relative overflow-hidden">
         {/* Soft background glow circles */}
         <div className="absolute top-20 left-1/4 -translate-x-1/2 w-[300px] h-[300px] bg-[#FF8331]/10 rounded-full blur-[100px] pointer-events-none" />
         <div className="absolute bottom-40 right-1/4 translate-x-1/2 w-[400px] h-[400px] bg-[#994F1D]/10 rounded-full blur-[120px] pointer-events-none" />
