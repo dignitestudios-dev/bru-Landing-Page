@@ -71,7 +71,7 @@ export const FeatureHighlightSection = (): JSX.Element => {
     },
     {
       from: "them" as const,
-      text: "OMG Yes 🥳 Small world. coffee this weekend?",
+      text: "OMG Yes ",
       time: "10:06 PM",
     },
   ];
@@ -510,7 +510,7 @@ export const FeatureHighlightSection = (): JSX.Element => {
             {/* title */}
             <div className={`absolute top-[7%] left-[5%] right-[5%] ${cardTitle}`}>
               <span className="text-white font-extrabold">Find each other, then take it </span>
-              <br /> 
+              <br />
               <span className="text-[#983c00] font-extrabold">offline in real life.</span>
             </div>
 

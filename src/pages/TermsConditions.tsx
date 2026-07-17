@@ -16,8 +16,6 @@ export default function TermsConditions() {
       <Navbar />
       <div className="min-h-screen bg-slate-50/50 flex flex-col selection:bg-orange-200 selection:text-orange-900">
         {/* Header */}
-
-        {/* <Navbar /> */}
         {/* Main content container */}
         <main className="flex-grow md:px-24 relative overflow-hidden">
           {/* Soft background glow circles */}
