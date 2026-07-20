@@ -25,7 +25,7 @@ export default function HeroSection() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="relative z-10 flex flex-col gap-6 items-center pt-10"
       >
-        <h1 className="text-[40px] sm:text-[50px] md:text-[70px] leading-[1.1] text-center font-extrabold text-[#000000]">
+        <h1 className="text-[40px] sm:text-[50px] md:text-[65px] leading-[1.1] text-center font-extrabold text-[#000000]">
           The Best <span className="text-[#FF8331]"> Connections Happen</span> In
           Person
         </h1>
