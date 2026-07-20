@@ -88,7 +88,7 @@ export const ApplicationSection = (): JSX.Element => {
                         className="relative w-full lg:w-auto mt-12 lg:mt-0 flex justify-center items-center lg:block"
                     >
                         {/* Desktop Mockup (Overflowing) */}
-                        <div className="hidden lg:block absolute lg:w-[480px] lg:h-[442px] lg:right-[-30px] lg:top-[-220px] xl:w-[580px] xl:h-[535px] xl:right-[-45px] xl:top-[-280px] 2xl:w-[640px] 2xl:h-[590px] 2xl:right-[-60px] 2xl:top-[-320px] pointer-events-none z-20">
+                        <div className="hidden lg:block absolute lg:w-[520px] lg:h-[442px] lg:right-[-30px] lg:top-[-220px] xl:w-[680px] xl:h-[535px] xl:right-[-45px] xl:top-[-280px] 2xl:w-[700px] 2xl:h-[590px] 2xl:right-[-100px] 2xl:top-[-320px] pointer-events-none z-20">
                             {/* Left Shadow */}
                             <div
                             // className="absolute left-[80px] bottom-[-20px] w-[158px] h-[11px] bg-black opacity-30 blur-[5px] rounded-full"
@@ -99,18 +99,18 @@ export const ApplicationSection = (): JSX.Element => {
                             />
                             {/* Phone Mockups Image */}
                             <img
-                                src="/figmaAssets/app.png"
+                                src="/figmaAssets/mockup-15.png"
                                 alt="Bru App Mockup"
                                 className="w-full h-full "
                             />
                         </div>
 
                         {/* Mobile Mockup (Inline/scaled) */}
-                        <div className="block lg:hidden relative w-[280px] sm:w-[320px] h-[410px] sm:h-[470px]">
+                        <div className="block lg:hidden relative w-[650px] sm:w-[520px] h-[410px] sm:h-[470px]">
                             {/* <div className="absolute left-[50px] bottom-[10px] w-[120px] h-[8px] bg-black opacity-20 blur-[4px] rounded-full" />
                             <div className="absolute right-[30px] bottom-[150px] w-[120px] h-[25px] bg-black opacity-25 blur-[8px] rounded-full" /> */}
                             <img
-                                src="/figmaAssets/app.png"
+                                src="/figmaAssets/mockup-15.png"
                                 alt="Bru App Mockup"
                                 className="w-full h-full object-contain"
                             />

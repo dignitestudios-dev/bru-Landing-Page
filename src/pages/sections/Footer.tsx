@@ -24,7 +24,7 @@ export const Footer = (): JSX.Element => {
           <img
             className="h-auto w-[110px] sm:w-[200px] object-contain"
             alt="Bru logo"
-            src="/figmaAssets/f-logo.png"
+            src="/figmaAssets/bru-footer-logo.png"
           />
 
         </a>

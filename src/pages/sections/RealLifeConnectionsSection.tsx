@@ -30,20 +30,20 @@ const featureCards = [
 export const RealLifeConnectionsSection = (): JSX.Element => {
   return (
     <section className="relative w-full bg-white py-16 md:py-20 lg:py-[90px]">
-        <img
-          className="pointer-events-none absolute top-[20%] -left-64 hidden  max-w-none lg:block"
-          alt="Group"
-          src="/figmaAssets/group-5205.png"
-        />
+      <img
+        className="pointer-events-none absolute top-[20%] -left-64 hidden  max-w-none lg:block"
+        alt="Group"
+        src="/figmaAssets/group-5205.png"
+      />
       <div className="relative mx-auto grid w-full max-w-[1440px] grid-cols-1 items-center gap-10 overflow-hidden px-4 sm:px-6 lg:grid-cols-[minmax(0,645px)_minmax(0,661px)] lg:gap-12 lg:px-[100px]">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.7 }}
           className="relative order-2 lg:order-1"
         >
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 120, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -53,14 +53,14 @@ export const RealLifeConnectionsSection = (): JSX.Element => {
               <img
                 className=" object-cover "
                 alt="Splash mockup"
-                src="/figmaAssets/mm-3.png"
+                src="/figmaAssets/design-fr.png"
               />
             </div>
           </motion.div>
           <div className="relative z-10 ml-5 flex flex-col justify-center gap-6 lg:gap-44 h-auto lg:h-[70%] px-3 sm:px-5 mt-6 lg:mt-10 lg:absolute lg:left-0 lg:top-0 lg:w-full lg:px-0">
             {featureCards.map((card, idx) => (
-              <motion.div 
-                key={card.title} 
+              <motion.div
+                key={card.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -79,7 +79,7 @@ export const RealLifeConnectionsSection = (): JSX.Element => {
             ))}
           </div>
         </motion.div>
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-50px" }}
@@ -94,7 +94,7 @@ export const RealLifeConnectionsSection = (): JSX.Element => {
               <span className="  font-extrabold tracking-[-0.84px] text-[#ff8331]">
                 Real-Life
               </span>
-              <br/>
+              <br />
               <span className="tracking-[0] font-extrabold text-black"> Connections</span>
             </h2>
           </header>
