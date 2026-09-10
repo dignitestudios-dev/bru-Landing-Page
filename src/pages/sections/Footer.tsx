@@ -128,7 +128,7 @@ export const Footer = (): JSX.Element => {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 w-full text-white [font-family:'Montserrat',sans-serif] text-sm sm:text-base font-medium">
           <p className="text-center md:text-left">
-            © 2026 Bru App. All Rights Reserved.
+            © {new Date().getFullYear()} Bru App. All Rights Reserved. Technology protected by active US Patent Pending applications.
           </p>
           <div className="flex items-center gap-6">
             <NavLink to="/privacy-policy" className="hover:text-white hover:underline transition-all duration-200 cursor-pointer">
