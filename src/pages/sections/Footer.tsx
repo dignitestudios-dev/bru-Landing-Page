@@ -128,14 +128,17 @@ export const Footer = (): JSX.Element => {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 w-full text-white [font-family:'Montserrat',sans-serif] text-sm sm:text-base font-medium">
           <p className="text-center md:text-left">
-            © {new Date().getFullYear()} Bru App. All Rights Reserved. Technology protected by active US Patent Pending applications.
+            © {new Date(Date.now()).getFullYear()} Bru App. All Rights Reserved. Technology protected by active US Patent Pending applications.
           </p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-6">
             <NavLink to="/privacy-policy" className="hover:text-white hover:underline transition-all duration-200 cursor-pointer">
               Privacy Policy
             </NavLink>
             <NavLink to="/terms-conditions" className="hover:text-white hover:underline transition-all duration-200 cursor-pointer">
               Terms & Conditions
+            </NavLink>
+            <NavLink to="/child-safety" className="hover:text-white hover:underline transition-all duration-200 cursor-pointer">
+              Child Safety
             </NavLink>
           </div>
         </div>

@@ -495,3 +495,131 @@ export const privacyData: PolicyData = {
     }
   ]
 };
+
+export interface ChildSafetySection {
+  id: number;
+  title: string;
+  description?: string;
+  items?: string[];
+  orderedItems?: string[];
+  footerNote?: string;
+  contactInfo?: {
+    email?: string;
+    website?: string;
+  };
+}
+
+export interface ChildSafetyPolicyData {
+  title: string;
+  lastUpdated: string;
+  intro: string;
+  sections: ChildSafetySection[];
+}
+
+export const childSafetyData: ChildSafetyPolicyData = {
+  title: "Bru Child Safety Policy",
+  lastUpdated: "1 October 2026",
+  intro:
+    "Bru is a dating and meetup app for adults. We are committed to protecting children and to keeping our platform free from child sexual abuse and exploitation (CSAE). This policy explains our standards, how we prevent and detect violations, and how we respond to them.",
+  sections: [
+    {
+      id: 1,
+      title: "Purpose",
+      description:
+        "Bru is a dating and meetup app for adults. We are committed to protecting children and to keeping our platform free from child sexual abuse and exploitation (CSAE). This policy explains our standards, how we prevent and detect violations, and how we respond to them."
+    },
+    {
+      id: 2,
+      title: "Age Requirement",
+      description:
+        "Bru is strictly for people aged 18 and over. Anyone under 18 is not permitted to create an account or use the app.",
+      items: [
+        "Users must confirm they are 18 or older when signing up and provide an accurate date of birth.",
+        "Accounts found to belong to a person under 18 are immediately suspended and removed.",
+        "Bru is not directed at children and does not knowingly collect personal information from anyone under 18."
+      ]
+    },
+    {
+      id: 3,
+      title: "Zero Tolerance for Child Sexual Abuse and Exploitation",
+      description:
+        "Bru prohibits all content and behavior that sexualizes, exploits, or endangers children, including:",
+      items: [
+        "Child sexual abuse material (CSAM) of any kind, including AI-generated or altered imagery",
+        "Sexualized conversation or imagery involving minors",
+        "Grooming, solicitation, or attempts to contact minors",
+        "Sextortion or coercion involving minors",
+        "Trafficking or any form of child exploitation",
+        "Profiles, photos, bios, or messages that suggest a user is a minor"
+      ],
+      footerNote:
+        "Violations result in permanent removal from Bru and, where required, a report to the relevant authorities."
+    },
+    {
+      id: 4,
+      title: "Prevention",
+      description:
+        "We take proactive steps to keep minors off the platform and to reduce risk:",
+      items: [
+        "Age confirmation at sign-up and review of accounts flagged as possibly underage",
+        "Profile and photo review for signs a user is under 18",
+        "Automated and manual moderation of profiles, photos, and messages",
+        "Restrictions on sharing sensitive content in chat",
+        "Safety guidance for users on how to spot and report suspicious behavior"
+      ]
+    },
+    {
+      id: 5,
+      title: "Reporting",
+      description: "Anyone can report a concern at any time.",
+      items: [
+        "In-app: use the Report option on any profile, photo, or message.",
+        "Email: support@brudating.com"
+      ],
+      footerNote:
+        "Reports can be made anonymously. Reports involving possible harm to a child are treated as the highest priority and reviewed as quickly as possible, within 24 hours."
+    },
+    {
+      id: 6,
+      title: "Our Response",
+      description:
+        "When we identify or receive a report of CSAE content or conduct, we will:",
+      orderedItems: [
+        "Remove the content and suspend or permanently ban the account",
+        "Preserve relevant records as required by law",
+        "Report confirmed CSAM and related abuse to the appropriate authorities, including the National Center for Missing & Exploited Children (NCMEC) where applicable, and to local law enforcement in the relevant jurisdiction",
+        "Cooperate with valid law enforcement requests",
+        "Review the case to improve our safeguards"
+      ]
+    },
+    {
+      id: 7,
+      title: "Compliance with the Law",
+      description:
+        "Bru complies with applicable child safety and child protection laws and regulations in the countries where it operates, as well as the requirements of the Apple App Store and Google Play."
+    },
+    {
+      id: 8,
+      title: "Moderation Team and Training",
+      description:
+        "Our moderation and support team is trained to recognize signs of CSAE, handle reports sensitively, and escalate urgent cases. Access to sensitive reports is limited to authorized personnel."
+    },
+    {
+      id: 9,
+      title: "Child Safety Contact",
+      description:
+        "For questions about this policy or to raise a child safety concern:",
+      contactInfo: {
+        email: "support@brudating.com",
+        website: "https://www.brudating.com"
+      }
+    },
+    {
+      id: 10,
+      title: "Updates to This Policy",
+      description:
+        "We review this policy regularly and update it as laws, technology, and best practices change. The latest version is always available at https://www.brudating.com."
+    }
+  ]
+};
+

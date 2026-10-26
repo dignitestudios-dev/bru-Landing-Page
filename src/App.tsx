@@ -10,6 +10,7 @@ import NotFound from "@/pages/not-found";
 import { Bru } from "@/pages/Bru";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsConditions from "@/pages/TermsConditions";
+import ChildSafetyPolicy from "@/pages/ChildSafetyPolicy";
 
 function Router() {
   return (
@@ -19,6 +20,8 @@ function Router() {
         <Route path="/" element={<Bru />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-conditions" element={<TermsConditions />} />
+        <Route path="/child-safety" element={<ChildSafetyPolicy />} />
+        <Route path="/child-safety-policy" element={<ChildSafetyPolicy />} />
         {/* Fallback to 404 */}
         <Route path="*" element={<NotFound />} />
       </Routes>
